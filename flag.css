@@ -1,0 +1,19 @@
+.body{
+    width: 33%;
+    height: 400px;
+}
+.display{
+    display: flex;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue ;
+}
+
+.box {
+    width: 300px;
+    height: 500px;
+}
+
