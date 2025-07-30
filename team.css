@@ -1,0 +1,49 @@
+body{
+    font-family: "Oswald", sans-serif;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.reservation{
+    border: 1px solid gray;
+    display: block;
+    width: 424px;
+    height:583px;
+    padding: 10px 20px;
+    margin-left:20px;
+}
+.form{
+    display: block;
+
+}
+.upText p{
+    color:goldenrod;
+
+}
+.upText{
+    text-align: center;
+}   
+.miniContainer{
+    padding:30px;
+}
+.formal{
+    width: 315px;
+    margin-bottom: 20px;
+    padding: 10px 24px;
+}
+.miniContainer p{
+    color:goldenrod;
+}
+.button{
+    background-color: black;
+    color:white;
+    width:365px;
+    padding: 20px 24px;
+}
+.button:hover{
+    background-color: goldenrod;
+    transition: all ease 0.3s;
+}

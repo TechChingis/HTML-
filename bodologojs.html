@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <script>
+            //Ex1:
+            const car = {
+                brand: "toyota",
+                model: "highlander",
+                year: 2025,
+            };
+            console.log("brand", car.brand);
+            console.log("model", car.model);
+            console.log("year", car.year);
+
+            //Ex2:
+            const person = {
+                firstName : "john",
+                lastName : "diaz",
+                age : 31,
+            };
+
+            delete person.age;
+       
+            person.city = "Ub";
+            person.position = "Student";
+            person.isMarried = false;
+
+            console.log("person:", person);
+            
+            //Ex3:
+            const getfullname = function(firstName, lastName) {
+                return firstName + lastName + "3";
+            }
+
+            person.getfullname = getfullname;
+
+            console.log("Ex3:", person.getfullname(person.firstName, person.lastName))
+
+            // //Ex4:
+            const movie = {
+                title: "astroboomer",
+                director: "leon",
+                year: 2025,
+                genre: "sci-fi",
+            };
+
+            const getKeysAndValues = function(){
+              return{
+                keys: Object.keys(movie),
+                values: Object.keys(movie),
+              }
+            }
+
+            //Ex5:
+            const address = {
+                street: "o-block",
+                city: "chicago",
+                zipcode: "25258is",
+            };
+
+            const student = {
+              name: "sammy",
+              age: 23,
+            };
+
+            student.address = address;
+
+            const getFullAddress = function(street, city, zipcode){
+              return street + city + zipcode;
+            }
+
+            student.getFullAddress = getFullAddress;
+
+            console.log(student.getFullAddress(address.street, address.city, address.zipcode))
+
+            //Ex6:
+            const user = {
+              name: "johnny bones",
+              age: 37,
+              greet: function(){
+                return `hello, my name is ${this.name}`;
+              }
+            };
+
+            //Ex7:
+            const book1 = {
+              title: "gremixshake-tacobell",
+              author: "george bush",
+              year: 2007,
+            }
+
+            const book2 = {
+              author: "george bush",
+              description: "baja away",
+              catagory: "food-chain",
+              year: 2007,
+            }
+        </script>
+    </body>
+</html>

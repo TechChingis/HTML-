@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        arrayjs
+    </title>
+    <body>
+        <script>
+
+            //Ex1
+            const elements = ["apple", "banana", "cherry", "blueberry", "strawberry"]
+            console.log(elements[2]);
+
+            //Ex2
+            const animals = ["Lion", "tiger", "elephant", "giraffe" ]
+            animals[1] = "panda"
+            console.log(animals);
+
+            //Ex3
+            const books = ["1984", "brave new world", "fahreneit 451"]
+            books.push("copyright", "magazine")
+            console.log(books);
+
+            //Ex4
+            const numbers = [10, 20, 30, 40, 50]
+            console.log(numbers[2])
+
+            //Ex5
+            const fruits1 = ["apple", "banana", "pineapple"]
+            const fruits2 = ["blueberry", "dragonfruit", "tomato"]
+            const allFruits = fruits1.concat(fruits2)
+
+            //Ex6
+            const colors = ["red", "green", "blue", "yellow", "purple"]
+            console.log( colors.includes("red"),
+            colors.includes("green"),
+            colors.includes("blue"),
+            colors.includes("yellow"),
+            colors.includes("purple"));
+
+            //Ex7 
+            const array1 = ["a", "b", "c",];
+            const array2 = ["a", "b", "c",];
+            const equalArrays = function(){
+                return aray1.length == array2.length
+            }
+            console.log(equalArrays(array1, array2));
+            //Ex8
+            const words = ["Javascript", "is", "a", "versatile",]
+            console.log(words.toString());
+
+            const students = [
+        { name: "Anu", grade: 85 },
+        { name: "Bold", grade: 92 },
+        { name: "Tuvshin", grade: 78 },
+        { name: "Naraa", grade: 88 },
+        { name: "Solongo", grade: 95 },
+      ];
+
+      //1. forEach ашиглан 90-аас дээш оноотой сурагчдыг topStudents массивт хадгал.
+
+      const topStudents = [];
+
+      students.forEach(function (student) {
+        if (student.grade > 90) {
+          return topStudents.push(student);
+        }
+      });
+
+      //students
+      console.log("ttt", topStudents, students);
+
+      students.foreach((student,index)=>{
+        console.log(student);
+        console.log(index);
+      })
+
+      const products = [
+  { id: 101, name: "Laptop", prices: [2000, 2100, 1900] },
+  { id: 102, name: "Mouse", prices: [25, 27, 24] },
+  { id: 103, name: "Keyboard", prices: [100, 110, 90] },
+  { id: 104, name: "Laptop", prices: [1950, 1980, 2000] },
+  { id: 105, name: "Monitor", prices: [400, 390, 410] }
+];
+
+//1.Бүх prices массивын дунджаа тооцож шинэ property averagePrice нэм.
+
+//2.Давхардсан name-тай product-уудыг хамгийн бага дундажтайгаар нэг болгож үлдээгээрэй.
+
+//3.sort ашиглан averagePrice-аар өсөхөөр эрэмбэл.
+
+//4.find ашиглан averagePrice > 1000 хамгийн анхны барааг олоорой.
+
+//5.Бүх name-ийн индексийг indexOf ашиглан харуул
+        </script>
+    </body>
+</html>
