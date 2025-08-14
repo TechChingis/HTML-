@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nightflix</title>
+<link rel="stylesheet" href="netflixclone.css" />
+</head>
+<body>
+
+<!-- First load screen -->
+<div id="first-load">
+  <div class="loader"></div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="logo-container">
+    <img src="nightflix.png" alt="Logo" />
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">TV Shows</a>
+    <a href="#">Movies</a>
+    <a href="#">Games</a>
+    <a href="#">Latest</a>
+    <a href="#">My List</a>
+    <a href="#">Browse by Languages</a>
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search..." />
+    </div>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-video">
+    <iframe
+      src="https://www.youtube.com/embed/5pTcio2hTSw?autoplay=1&mute=1&loop=1&playlist=5pTcio2hTSw&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      title="Suzume Trailer"
+    ></iframe>
+  </div>
+  <div class="hero-overlay">
+    <h1>Suzume</h1>
+    <p>17-year-old Suzume's journey begins in a quiet town in Kyushu when she encounters a young man who tells her, "I'm looking for a door.".</p>
+    <button class="play-btn">▶ Play</button>
+  </div>
+</section>
+
+<!-- Movies -->
+<section id="movieList" class="movies-grid">
+  <div id="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#">FAQ</a>
+    <a href="#">Help Center</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Privacy</a>
+    <a href="#">Cookie Preferences</a>
+  </div>
+  <p>© 2025 Nightflix. All rights reserved.</p>
+</footer>
+
+<script>
+const API = "https://ghibliapi.vercel.app/films";
+let allMovies = [];
+
+async function loadAllMovies() {
+  const movieList = document.getElementById("movieList");
+  movieList.innerHTML = `<div id="loader-wrapper"><div class="loader"></div></div>`;
+
+  try {
+    const resp = await fetch(API);
+    if (!resp.ok) throw new Error("Network error");
+
+    allMovies = await resp.json();
+    renderMovies(allMovies);
+
+    document.getElementById("first-load").style.display = "none";
+  } catch (err) {
+    movieList.innerHTML = `<div style="text-align:center;padding:20px;color:red;">
+      Error loading movies: ${err.message}
+    </div>`;
+  }
+}
+
+function renderMovies(movies) {
+  const movieList = document.getElementById("movieList");
+  movieList.innerHTML = movies.map(movie => `
+    <div class="movie-card">
+      <img src="${movie.image}" alt="${movie.title}" />
+      <div class="movie-overlay">
+        <h3>${movie.title}</h3>
+        <p>${movie.description.substring(0, 80)}...</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.getElementById("search").addEventListener("input", e => {
+  const term = e.target.value.toLowerCase();
+  const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
+  renderMovies(filtered);
+});
+
+loadAllMovies();
+</script>
+
+</body>
+</html>

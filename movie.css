@@ -1,191 +1,208 @@
-/* Reset & base */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  html, body {
-    height: 100%;
-  }
-  body {
-    background: #141414;
-    color: #fff;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    padding: 24px;
-  }
-  
-  /* Header */
-  header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  .logo {
-    font-weight: 800;
-    font-size: 24px;
-    color: #E50914; /* Netflix red */
-    letter-spacing: 1px;
-  }
-  .search {
-    margin-left: auto;
-  }
-  .search input {
-    background: #222;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    width: 220px;
-  }
-  
-  /* Grid */
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-  }
-  
-  /* Card */
-  .movieCard {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #202020;
-    transform-origin: center;
-    transition: transform .25s ease, box-shadow .25s ease;
-    cursor: pointer;
-    min-height: 240px;
-  }
-  .movieCard:hover {
-    transform: scale(1.06);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-  }
-  .movieCard img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    display: block;
-    background: linear-gradient(180deg,#333,#222);
-  }
-  
-  /* Hover overlay */
-  .movieOverlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 14px;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0));
-    opacity: 0;
-    transition: opacity .22s ease;
-    pointer-events: none;
-  }
-  .movieCard:hover .movieOverlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .movieTitle {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    padding: 0 6px;
-    line-height: 1.2;
-  }
-  .playButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #E50914;
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform .12s ease;
-  }
-  .playButton:active {
-    transform: translateY(1px);
-  }
-  
-  /* Loader */
-  .loaderWrap {
-    display: flex;
-    justify-content: center;
-    padding: 40px 0;
-  }
-  .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: #E50914;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* Modal */
-  .modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 80;
-    background: rgba(0,0,0,0.6);
-  }
-  .modal.open {
-    display: flex;
-  }
-  .modalCard {
-    width: min(900px, 95%);
-    background: #0f0f0f;
-    border-radius: 10px;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 18px;
-    padding: 18px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-    color: #ddd;
-  }
-  .modalCard img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    object-fit: cover;
-  }
-  .modalContent h3 {
-    margin-bottom: 10px;
-    color: #fff;
-  }
-  .modalContent p {
-    font-size: 14px;
-    line-height: 1.45;
-    color: #cfcfcf;
-    margin-bottom: 14px;
-  }
-  .closeBtn {
-    position: absolute;
-    right: 18px;
-    top: 18px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.12);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  /* Responsive */
-  @media (max-width: 700px) {
-    .modalCard { grid-template-columns: 1fr; }
-    .movieCard img { height: 200px; }
-  }
-  
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #141414;
+  color: #fff;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.logo {
+  font-weight: 800;
+  font-size: 24px;
+  color: #E50914;
+  letter-spacing: 1px;
+}
+.search { margin-left: auto; }
+.search input {
+  background: #222;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 220px;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.hero iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78%; /* 16:9 ratio */
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  padding: 0 5%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0) 80%);
+  color: #fff;
+}
+.hero-overlay h1 { font-size: 2.5rem; margin-bottom: 12px; }
+.hero-overlay p { font-size: 1.2rem; margin-bottom: 16px; }
+.hero-overlay .playButton {
+  background: #E50914;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Grid */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  flex-grow: 1;
+}
+
+/* Movie Card */
+.movieCard {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #202020;
+  transform-origin: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+  cursor: pointer;
+  min-height: 240px;
+}
+.movieCard:hover { transform: scale(1.06); box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+.movieCard img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  background: linear-gradient(180deg,#333,#222);
+}
+
+/* Hover overlay */
+.movieOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0));
+  opacity: 0;
+  transition: opacity .22s ease;
+  pointer-events: none;
+}
+.movieCard:hover .movieOverlay { opacity: 1; pointer-events: auto; }
+.movieTitle {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Loader */
+.loaderWrap { display:flex; justify-content:center; padding:40px 0; }
+.loader {
+  width:48px; height:48px;
+  border:5px solid #FFF;
+  border-bottom-color:#E50914;
+  border-radius:50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  background: rgba(0,0,0,0.6);
+}
+.modal.open { display: flex; }
+.modalCard {
+  width: min(900px, 95%);
+  background: #0f0f0f;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+  padding: 18px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+  color: #ddd;
+  position: relative;
+}
+.modalCard img { width: 100%; height: auto; border-radius: 6px; }
+.modalContent h3 { margin-bottom: 10px; color:#fff; }
+.modalContent p { font-size: 14px; line-height: 1.45; color:#cfcfcf; margin-bottom: 14px; }
+.closeBtn {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: #141414;
+  padding: 30px 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #757575;
+  border-top: 1px solid #333;
+  margin-top: 30px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.footer-links a {
+  color: #757575;
+  margin: 5px 15px;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.footer-links a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width:700px) {
+  .modalCard { grid-template-columns: 1fr; }
+  .movieCard img { height: 200px; }
+  .hero-overlay h1 { font-size: 1.8rem; }
+  .hero-overlay p { font-size: 1rem; }
+}
